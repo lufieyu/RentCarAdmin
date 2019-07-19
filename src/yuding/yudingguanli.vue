@@ -300,6 +300,7 @@ export default {
           th {
             font-weight: normal;
             border-left: 3px solid #e2e3e3;
+            font-size: 20px;
             &:nth-child(1) {
               border: none;
               width: 136px;

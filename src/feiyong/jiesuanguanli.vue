@@ -203,7 +203,7 @@ export default {
         border: none;
         border-radius: 5px;
         color: #fff;
-        font-size: 30px;
+        font-size: 24px;
         cursor: pointer;
       }
     }

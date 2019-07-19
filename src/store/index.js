@@ -55,6 +55,7 @@ export default new Vuex.Store({
         },
         changetaglight(state,val){
             state.tag.light=val;
-        },
+        }
+       
     }
 })

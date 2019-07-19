@@ -101,7 +101,7 @@ export default {
       outline: none;
       background: #fc0;
       color: #fff;
-      font-size: 40px;
+      font-size: 24px;
       cursor: pointer;
     }
   }

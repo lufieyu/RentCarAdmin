@@ -121,7 +121,7 @@ export default {
           width: 100%;
           height: 35px;
           color: #333;
-          font-size: 20px;
+          font-size: 16px;
           text-align: center;
           line-height: 35px;
           &:nth-child(2n) {

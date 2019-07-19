@@ -7,10 +7,10 @@
       <router-link to='/index/yudingguanli'><button>预约查询</button></router-link>
     </div>
     <div class="chaxun">
-      <input type="text" placeholder="请输入证件号" />
+      <input type="text" placeholder="请输入车牌号" />
       <button>查询</button>
-      <router-link to='/index/huiyuanzhuce'><button>注册</button></router-link>
-      <router-link to='/index/yudingguanli'><button>预约查询</button></router-link>
+      <router-link to='/index/huiyuanzhuce'><button>登记</button></router-link>
+      <router-link to='/index/yudingguanli'><button>违章查询</button></router-link>
     </div>
     <div class="mingxi">
       <div id="main"></div>

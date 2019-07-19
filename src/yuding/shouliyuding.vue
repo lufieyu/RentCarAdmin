@@ -204,7 +204,7 @@
             </li>
           </ul>
           <button>受理</button>
-          <img src="./../../static/img/yua88888.png" alt="">
+          <img src="./../../static/img/yua88888.png">
         </div>
       </div>
     </div>
@@ -256,7 +256,7 @@ export default {
             font-size: 20px;
             display: inline-block;
             width: 90px;
-            font-weight: bold;
+            font-weight: 600;
           }
           &:nth-child(2){
             font-size: 16px;

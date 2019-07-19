@@ -20,7 +20,7 @@
           >
             <router-link :to="item.url">
               {{item.name}}
-              <span @click='del(index,$event)'>×</span>
+              <span @click="del(index,$event)">×</span>
             </router-link>
           </li>
         </ul>
@@ -31,7 +31,10 @@
         <ul>
           <li>
             <router-link :to="$store.state.Tab.Tab_t[0].href">
-              <h3 @click="fn(0)" :class="{light:$store.state.Tab.num==0}">{{$store.state.Tab.Tab_t[0].tit}}</h3>
+              <h3
+                @click="fn(0)"
+                :class="{light:$store.state.Tab.num==0}"
+              >{{$store.state.Tab.Tab_t[0].tit}}</h3>
               <span></span>
             </router-link>
           </li>
@@ -56,7 +59,10 @@
           </li>
           <li>
             <router-link :to="$store.state.Tab.Tab_t[1].href">
-              <h3 @click="fn(4)" :class="{light:$store.state.Tab.num==4}">{{$store.state.Tab.Tab_t[1].tit}}</h3>
+              <h3
+                @click="fn(4)"
+                :class="{light:$store.state.Tab.num==4}"
+              >{{$store.state.Tab.Tab_t[1].tit}}</h3>
               <span></span>
             </router-link>
           </li>
@@ -114,20 +120,23 @@ export default {
   mounted() {
     // this.$store.state.$router.go(0);
     console.log();
-    
   },
   methods: {
     fn(ind) {
       // this.$store.state.Tab.num = ind;
-      this.$store.commit('changetabnum',ind);
-      this.$store.commit('changetabtab',-1);
-      this.$store.commit('changetagnum',ind);
-      this.$store.commit('changetagtab',-1);
+      this.$store.commit("changetabnum", ind);
+      this.$store.commit("changetabtab", -1);
+      this.$store.commit("changetagnum", ind);
+      this.$store.commit("changetagtab", -1);
       // this.$store.state.tag.num = ind;
       // this.$store.state.Tab.tab = -1;
       // this.$store.state.tag.tab = -1;
       if (this.$store.state.Tab.num == 4) {
-        if (this.$store.state.tag.name.indexOf(this.$store.state.Tab.Tab_t[1].tit) == -1) {
+        if (
+          this.$store.state.tag.name.indexOf(
+            this.$store.state.Tab.Tab_t[1].tit
+          ) == -1
+        ) {
           this.$store.state.tag.tag_.push({
             name: this.$store.state.Tab.Tab_t[1].tit,
             url: this.$store.state.Tab.Tab_t[1].href,
@@ -137,68 +146,91 @@ export default {
           });
           this.$store.state.tag.name.push(this.$store.state.Tab.Tab_t[1].tit);
         }
-        this.$store.state.tag.light=this.$store.state.Tab.Tab_t[1].head;
-        console.log(this.$store.state.tag.light,this.$store.state.Tab.Tab_t[1].head);
+        this.$store.commit(
+          "changetaglight",
+          this.$store.state.Tab.Tab_t[1].head
+        );
+        console.log(
+          this.$store.state.tag.light,
+          this.$store.state.Tab.Tab_t[1].head
+        );
       } else if (this.$store.state.Tab.num == 0) {
-        // this.$store.state.tag.light = -1;
-        this.$store.commit('changetaglight',-1);
+        this.$store.commit("changetaglight", -1);
       }
     },
     fn_(ind) {
-      this.$store.state.Tab.tab = ind;
-      this.$store.state.tag.tab = ind;
+      this.$store.commit("changetabtab", ind);
+      this.$store.commit("changetagtab", ind);
       if (
-        this.$store.state.tag.name.indexOf(this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].tit) ==
-        -1
+        this.$store.state.tag.name.indexOf(
+          this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind]
+            .tit
+        ) == -1
       ) {
         this.$store.state.tag.tag_.push({
-          name: this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].tit,
-          url: this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].href,
+          name: this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[
+            ind
+          ].tit,
+          url: this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[
+            ind
+          ].href,
           num: this.$store.state.Tab.num,
           tab: this.$store.state.Tab.tab,
-          head: this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].head
+          head: this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[
+            ind
+          ].head
         });
-        this.$store.state.tag.name.push(this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].tit);
+        this.$store.state.tag.name.push(
+          this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind]
+            .tit
+        );
       }
-        this.$store.state.tag.light=this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].head;
+      this.$store.commit(
+        "changetaglight",
+        this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind].head
+      );
     },
     fn2(i) {
-      this.$store.state.Tab.num = this.$store.state.tag.tag_[i].num;
-      this.$store.state.Tab.tab = this.$store.state.tag.tag_[i].tab;
-      this.$store.state.tag.light = i;
+      this.$store.commit("changetabnum", this.$store.state.tag.tag_[i].num);
+      this.$store.commit("changetabtab", this.$store.state.tag.tag_[i].tab);
+      this.$store.commit("changetaglight", i);
     },
-    fn3(){
-      this.$store.state.Tab.num=0;
-      this.$store.state.Tab.tab=-1;
-      this.$store.state.tag.light=-1;
+    fn3() {
+      this.$store.commit("changetabnum", 0);
+      this.$store.commit("changetabtab", -1);
+      this.$store.commit("changetaglight", -1);
     },
-    del(i,e) {
-      // console.log(e);
-      // e=e||event;
-// e.stopPropagation();
-// e.CancelBubble=true;
-  if(this.$store.state.tag.tag_.length==1){
-    console.log(1)
-        this.$store.state.tag.light=-1;
-        this.$store.state.Tab.num=0;
-        this.$store.state.Tab.tab=-1;
-        setTimeout(()=>{
-          this.$router.push('/index/home');
-        },30)
-      }else{
-        if(this.$store.state.tag.light==this.$store.state.tag.tag_[i].head){
-       console.log(22)
-}
-}
-      this.$store.state.tag.tag_.splice(i,1);
-        this.$store.state.tag.name.splice(i,1);
+    del(i, e) {
+      console.log(e);
+      e = e || event;
+      e.stopPropagation();
+      e.CancelBubble = true;
+        console.log(this.$store.state.tag.tag_[i].head,this.$store.state.tag.tag_.length-1);
+      if (this.$store.state.tag.tag_.length == 1) {
+        console.log(1);
+      this.$store.commit("changetaglight", -1);
+          this.$store.commit("changetabtab", -1);
+      this.$store.commit("changetabnum", 0);
+        setTimeout(() => {
+          this.$router.push("/index/home");
+        }, 30);
+      } else {
+        if (this.$store.state.tag.light == this.$store.state.tag.tag_[i].head) {
+      this.$store.commit("changetabnum", this.$store.state.tag.tag_[i+1].num);
+      this.$store.commit("changetabtab", this.$store.state.tag.tag_[i+1].tab);
+      this.$store.commit("changetaglight", this.$store.state.tag.tag_[i+1].head);
+        }else if(this.$store.state.tag.tag_[i].head==this.$store.state.tag.tag_.length-1){
+          this.$store.commit("changetabnum", this.$store.state.tag.tag_[i-1].num);
+      this.$store.commit("changetabtab", this.$store.state.tag.tag_[i-1].tab);
+      this.$store.commit("changetaglight", this.$store.state.tag.tag_[i-1].head);
+        }
+      }
+      this.$store.state.tag.tag_.splice(i, 1);
+      this.$store.state.tag.name.splice(i, 1);
     }
   },
   components: {},
-  computed:{
-    store(){
-      return this.$store.state;
-    }
+  computed: {
   }
 };
 </script>

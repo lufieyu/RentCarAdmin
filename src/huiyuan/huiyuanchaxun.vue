@@ -270,7 +270,7 @@ export default {
         margin-left: 200px;
         margin-top: 50px;
         color: #fff;
-        font-size: 28px;
+        font-size: 24px;
         cursor: pointer;
       }
     }
@@ -332,9 +332,13 @@ export default {
           }
           th {
             border-left: 3px solid #e2e3e3;
+              font-size:20px;
+              font-weight: normal;
+              color:#fff;
             &:nth-child(1) {
               border: none;
               width: 178px;
+
             }
             &:nth-child(2) {
               width: 153px;

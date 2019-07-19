@@ -133,7 +133,7 @@ export default {
       border-radius: 5px;
       background: #fc0;
       color: #fff;
-      font-size: 30px;
+      font-size: 24px;
       position: absolute;
       bottom: 95px;
       left: 50%;

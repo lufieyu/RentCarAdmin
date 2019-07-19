@@ -28,13 +28,13 @@
           <span>忘记密码</span>
         </div>
         <div class="in_btn">
-          <button @click="denglu_btn">登录</button>
+          <button @click="denglu_btn($event)">登录</button>
         </div>
       </form>
     </div>
     <div class="denglu_ins" v-if="!tab">
       <div class="denglu_ins_in">
-        <form name="register" action="#">
+        <form name="register" onSubmit='false'>
           <div class="ins_title">
             <h3 @click="tab=true">用户登录</h3>
             <h3>立即注册</h3>
@@ -45,7 +45,7 @@
             <input class="password" type="password" placeholder="请确认密码" />
           </div>
           <div class="ins_btn">
-            <button @click="res">立即注册</button>
+            <button @click="res($enent)">立即注册</button>
           </div>
         </form>
       </div>
@@ -88,7 +88,7 @@ export default {
           .then((err)=>{
             console.log(err);
           })
-          // this.$router.push('/index/home');
+          this.$router.push('/index/home');
         }
       }
     },
@@ -103,8 +103,10 @@ export default {
       this.loak = true;
       return;
     },
-    res() {
-          axios.post('/user', {
+    res(e) {
+      console.log(e);
+      e.PreventDefault;
+          this.$axios.post('http://172.25.1.82:8080/admin/save', {
       })
       .then(function (response) {
         console.log(response);
