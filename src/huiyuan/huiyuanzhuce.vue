@@ -4,31 +4,31 @@
       <ul>
         <li>
           <span>姓名:</span>
-          <input type="text">
+          <input type="text" v-model='name'>
         </li>
         <li>
           <span>手机号:</span>
-          <input type="text">
+          <input type="text" v-model='phone'>
         </li>
         <li>
           <span>城市:</span>
-          <input type="text">
+          <input type="text" v-model='citay'>
         </li>
         <li>
           <span>验证码:</span>
-          <input type="text">
+          <input type="text" v-model='yanzheng'>
         </li>
         <li>
           <span>身份证号:</span>
-          <input type="text">
+          <input type="text" v-model='shenfen'>
         </li>
         <li>
           <span>驾驶证有效期:</span>
-          <input type="text">
+          <input type="text" v-model='jiazhao'>
         </li>
         <li>
           <span>邮箱:</span>
-          <input type="text">
+          <input type="text" v-model='emial'>
         </li>
       </ul>
       <el-button
@@ -44,10 +44,27 @@
 export default {
   data() {
     return {
-
+      name:'',
+      phone:'',
+      citay:'',
+      yanzheng:'',
+      shenfen:'',
+      jiazhao:'',
+      emial:'',
     }
   },
   methods: {
+    fn(a, b, c) {
+      let aa = document.getElementsByClassName(a)[0];
+      aa.setAttribute("placeholder", b);
+      aa.setAttribute("class", a + " input_light");
+      setTimeout(() => {
+        aa.setAttribute("placeholder", c);
+        aa.setAttribute("class", a);
+        this.lock = true;
+      }, 1000);
+      return;
+    },
 open() {
         this.$notify({
           title: '成功',
@@ -98,6 +115,9 @@ open() {
           outline: none;
           background: transparent;
           font-size: 16px;
+          &.input_light::-webkit-input-placeholder {
+          color: red;
+        }
         }
       }
     }

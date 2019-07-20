@@ -196,7 +196,6 @@ export default {
       e.stopPropagation();
       e.CancelBubble = true;
       let light_i = document.getElementsByClassName("light")[0];
-      // console.log(this.$store.state.tag.tag_[i - 1].num);
       if (this.$store.state.tag.tag_.length == 1) {
         this.$store.commit("changetaglight", -1);
         this.$store.commit("changetabtab", -1);

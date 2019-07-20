@@ -38,7 +38,7 @@ export default {
 
 <style lang='less'>
 #app {
-  width: 100%;
+  width: 1440px;
   height: 100%;
   margin: 0 auto;
 background: url('./../static/img/bg.jpg') no-repeat;

@@ -80,16 +80,13 @@ export default {
         this.lock = false;
         if (this.text == "") {
           this.fn("text", "账户名不能为空", "请输入账户名");
-        } else if (this.text !== "admin") {
-          this.text = "";
-          this.fn("text", "账户名不存在", "请输入账户名");
         } else if (this.password == "") {
           this.fn("password", "密码不能为空", "请输入密码");
         } else {
           console.log("登录成功");
           this.lock = true;
           this.$axios
-            .post(
+            .get(
               "http://172.25.1.82:8080/admin/findAll?admin=" +
                 this.text +
                 "&password=" +
@@ -100,6 +97,8 @@ export default {
             })
             .then(err => {
               console.log(err);
+              this.password='';
+              this.fn("password", "账户名或密码错误", "请输入密码");
             });
           this.$router.push("/index/home");
         }
@@ -119,7 +118,6 @@ export default {
     res() {
       if (this.lock == true) {
         let reg = /^[a-z0-9]{6,12}$/i;
-        console.log(!reg.test(this.text1));
         this.lock = false;
         if (this.text1 == "") {
           this.fn("text1", "账户名不能为空", "请输入账户名");
@@ -152,6 +150,7 @@ export default {
           message: '注册成功',
           type: 'success'
         });
+        this.tab=true;
             })
             .catch(function(err) {
               
