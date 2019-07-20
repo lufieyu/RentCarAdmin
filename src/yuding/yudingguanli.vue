@@ -2,8 +2,8 @@
   <div id="guanli">
     <div class="box">
       <div class="chaxun">
-        <input type="text" />
-        <button>查询</button>
+        <input type="text" v-model='chaxun' name='number'/>
+        <button @click='fn'>查询</button>
       </div>
       <div class="table">
         <table cellspacing="0" cellpadding="0">
@@ -44,7 +44,7 @@
             <td>
               <div>
                 <img src='./../../static/img/shouli.png' />
-                <span style="color:#0a82e1">受理</span>
+                <span style="color:#0a82e1" @click='shouli(2,1)'>受理</span>
               </div>
               <div>
                 <img src='./../../static/img/shanchu.png' />
@@ -62,7 +62,7 @@
 export default {
   data() {
     return {
-     
+     chaxun:'',
       guanli: [
         {
           name: "sdfg",
@@ -208,6 +208,36 @@ export default {
         // let len=this.guanli.length-ind+2;
         this.guanli.splice(ind,1);
         
+    },
+    shouli(num, tab) {
+      this.$store.commit("changetabnum", num);
+      this.$store.commit("changetabtab", tab);
+      if (
+        this.$store.state.tag.name.indexOf(
+          this.$store.state.Tab.Tab_[num - 1].tits[tab].tit
+        ) == -1
+      ) {
+        this.$store.state.tag.tag_.push({
+          name: this.$store.state.Tab.Tab_[num - 1].tits[tab].tit,
+          url: this.$store.state.Tab.Tab_[num - 1].tits[tab].href,
+          num: this.$store.state.Tab.num,
+          tab: this.$store.state.Tab.tab,
+          head: this.$store.state.Tab.Tab_[num - 1].tits[tab].head
+        });
+        this.$store.state.tag.name.push(
+          this.$store.state.Tab.Tab_[num - 1].tits[tab].tit
+        );
+      }
+      this.$store.commit(
+        "changetaglight",
+        this.$store.state.Tab.Tab_[num - 1].tits[tab].head
+      );
+      this.$router.push('/index/shouliyuding');
+    },
+    fn(){
+      this.$axios.get(this.$store.state.IP+'/leaserecord/getAll?number='+this.chaxun).then((res)=>{
+        console.log(res);
+      })
     }
   },
   components: {},

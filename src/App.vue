@@ -44,4 +44,9 @@ export default {
 background: url('./../static/img/bg.jpg') no-repeat;
 background-size: cover;
 }
+@media all and (min-width: 681px) and (max-width: 1366px){
+  #app {
+  width: 100%;
+}
+}
 </style>

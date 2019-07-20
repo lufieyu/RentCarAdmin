@@ -9,8 +9,8 @@
       <div class="c_right">
         <div class="c_cha">
           <span>车牌号</span>
-          <input type="text" />
-          <button>查询</button>
+          <input type="text" name="carPlate" v-model="chaxun" />
+          <button @click="fn">查询</button>
         </div>
         <div class="c_xinxi">
           <h3>车辆信息</h3>
@@ -51,6 +51,7 @@
 export default {
   data() {
     return {
+      chaxun: "",
       chepai: [
         "豫A 12345",
         "豫A 12345",
@@ -81,7 +82,19 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    fn() {
+      console.log(this.chaxun);
+      this.$axios
+        .get(
+          this.$store.state.IP+"/cartrade/findCarPlate?carPlate=" +
+            this.chaxun
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  },
   components: {}
 };
 </script>
@@ -164,7 +177,7 @@ export default {
           background: #fc0;
           color: #fff;
           font-size: 24px;
-        cursor: pointer;
+          cursor: pointer;
         }
       }
       .c_xinxi {
@@ -181,28 +194,28 @@ export default {
           overflow: hidden;
           width: 100%;
           margin-bottom: 20px;
-          li{
+          li {
             float: left;
             width: 49%;
             margin-bottom: 36px;
             font-size: 16px;
             color: #333;
-            &:nth-child(2n+1){
-              span{
-                &:nth-child(1){
+            &:nth-child(2n + 1) {
+              span {
+                &:nth-child(1) {
                   margin-left: 32px;
-              }
+                }
               }
             }
-            span{
-              &:nth-child(1){
+            span {
+              &:nth-child(1) {
                 display: inline-block;
                 width: 168px;
               }
             }
           }
         }
-        img{
+        img {
           display: block;
           width: 414px;
           height: 224px;
@@ -255,5 +268,4 @@ export default {
     margin-bottom: 20px !important;
   }
 }
-
 </style>

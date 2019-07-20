@@ -8,8 +8,8 @@
     </div>
     <div class="jiesuan_" v-if="!chaxun">
       <div class="chaxun">
-        <input type="text" />
-        <button>查询</button>
+        <input type="text" name='number' v-model='cha'/>
+        <button @click='fn'>查询</button>
       </div>
       <div class="table">
         <table cellspacing="0" cellpadding="0">
@@ -50,7 +50,7 @@
             <td>
               <div>
                 <img src="./../../static/img/shouli.png" />
-                <span style="color:#0a82e1">受理</span>
+                <span style="color:#0a82e1" @click='shouli(3,1)'>受理</span>
               </div>
             </td>
           </tr>
@@ -65,6 +65,7 @@ export default {
   data() {
     return {
       chaxun:true,
+      cha:'',
       jiesuan: [
         {
           name: "邱士长",
@@ -168,7 +169,38 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    shouli(num, tab) {
+      this.$store.commit("changetabnum", num);
+      this.$store.commit("changetabtab", tab);
+      if (
+        this.$store.state.tag.name.indexOf(
+          this.$store.state.Tab.Tab_[num - 1].tits[tab].tit
+        ) == -1
+      ) {
+        this.$store.state.tag.tag_.push({
+          name: this.$store.state.Tab.Tab_[num - 1].tits[tab].tit,
+          url: this.$store.state.Tab.Tab_[num - 1].tits[tab].href,
+          num: this.$store.state.Tab.num,
+          tab: this.$store.state.Tab.tab,
+          head: this.$store.state.Tab.Tab_[num - 1].tits[tab].head
+        });
+        this.$store.state.tag.name.push(
+          this.$store.state.Tab.Tab_[num - 1].tits[tab].tit
+        );
+      }
+      this.$store.commit(
+        "changetaglight",
+        this.$store.state.Tab.Tab_[num - 1].tits[tab].head
+      );
+      this.$router.push('/index/shouliyuding');
+    },
+    fn(){
+      this.$axios.get(this.$store.state.IP+'/leaserecord/getAll?number='+this.cha).then((res)=>{
+        console.log(res);
+      })
+    }
+  },
   components: {}
 };
 </script>

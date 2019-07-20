@@ -87,20 +87,20 @@ export default {
           this.lock = true;
           this.$axios
             .get(
-              "http://172.25.1.82:8080/admin/findAll?admin=" +
+              this.$store.state.IP+"/admin/findAll?admin=" +
                 this.text +
                 "&password=" +
                 this.password
             )
             .then(res => {
               console.log(res);
+              this.$router.push("/index/home");
             })
             .then(err => {
               console.log(err);
               this.password='';
               this.fn("password", "账户名或密码错误", "请输入密码");
             });
-          this.$router.push("/index/home");
         }
       }
     },
@@ -139,12 +139,10 @@ export default {
         } else {
           this.$axios
             .get(
-              "http://172.25.1.42:8080/admin/save?admin=" +
-                this.text1 +
-                "&password=" +
-                this.password1
+              this.$store.state.IP+"/admin/save?admin=" + this.text1 + "&password=" + this.password1
             )
             .then(function(res) {
+              console.log(res);
               this.$notify({
           title: '成功',
           message: '注册成功',

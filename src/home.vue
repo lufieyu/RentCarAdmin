@@ -1,12 +1,12 @@
 <template>
   <div id="home">
     <div class="chaxun">
-      <input type="text" placeholder="请输入手机号" />
+      <input name="phone" v-model='chaxun1' type="text" placeholder="请输入手机号" />
       <router-link to="/index/huiyuanchaxun">
-        <button @click="fn(1,1)">查询</button>
+        <button @click="fn(1,1,'cha')">查询</button>
       </router-link>
       <router-link to="/index/huiyuanzhuce">
-        <button @click="fn(1,0)">注册</button>
+        <button @click="fn(1,0,'zhu')">注册</button>
       </router-link>
       <router-link to="/index/yudingguanli">
         <button @click="fn(2,0)">预约查询</button>
@@ -33,14 +33,24 @@ export default {
   data() {
     return {
       chaxun1: "",
-      chaxun2: ""
+      chaxun2: "",
     };
   },
   mounted() {
     this.mychart();
   },
   methods: {
-    fn(num, tab) {
+    fn(num, tab, a) {
+      console.log(this.chaxun1);
+      if (a == "cha") {
+        this.$axios
+          .get(
+            this.$store.state.IP+"/ordermessage/findByPhone?phone="+this.chaxun1
+          )
+          .then(res => {
+            console.log(res);
+          });
+      }
       this.$store.commit("changetabnum", num);
       this.$store.commit("changetabtab", tab);
       if (
