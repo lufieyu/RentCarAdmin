@@ -212,4 +212,48 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .chaxun {
+    width: 96% !important;
+    height: 445px !important;
+  }
+  .c_left {
+    width: 155px !important;
+    max-height: 410px !important;
+  }
+  .c_right {
+    width: 81% !important;
+    margin-left: 20px !important;
+    margin-top: 20px !important;
+  }
+  .c_cha {
+    line-height: 30px !important;
+    span {
+      font-size: 20px !important;
+    }
+    input {
+      height: 30px !important;
+    }
+    button {
+      height: 30px !important;
+      font-size: 20px !important;
+      width: 135px !important;
+    }
+  }
+  .c_xinxi {
+    margin-top: 30px !important;
+    height: 340px !important;
+    h3 {
+      margin-bottom: 20px !important;
+    }
+    img {
+      width: 310px !important;
+      height: 138px !important;
+    }
+  }
+  .c_xinxi ul li {
+    margin-bottom: 20px !important;
+  }
+}
+
 </style>

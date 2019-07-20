@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <div class="header">
-      <span>
+      <span class="fan">
         <router-link to="/">退出</router-link>
       </span>
       <div class="tou">
@@ -16,12 +16,10 @@
             v-for="(item,index) in $store.state.tag.tag_"
             :key="index"
             @click.self="fn2(index)"
-            :class="{light:$store.state.tag.light==index}"
+            :class="{light:$store.state.tag.light==$store.state.tag.tag_[index].head}"
           >
-            <router-link :to="item.url">
-              {{item.name}}
-              <span @click="del(index,$event)">×</span>
-            </router-link>
+            {{item.name}}
+            <span @click="del(index,$event)">×</span>
           </li>
         </ul>
       </div>
@@ -123,14 +121,10 @@ export default {
   },
   methods: {
     fn(ind) {
-      // this.$store.state.Tab.num = ind;
       this.$store.commit("changetabnum", ind);
       this.$store.commit("changetabtab", -1);
       this.$store.commit("changetagnum", ind);
       this.$store.commit("changetagtab", -1);
-      // this.$store.state.tag.num = ind;
-      // this.$store.state.Tab.tab = -1;
-      // this.$store.state.tag.tab = -1;
       if (this.$store.state.Tab.num == 4) {
         if (
           this.$store.state.tag.name.indexOf(
@@ -193,7 +187,8 @@ export default {
     fn2(i) {
       this.$store.commit("changetabnum", this.$store.state.tag.tag_[i].num);
       this.$store.commit("changetabtab", this.$store.state.tag.tag_[i].tab);
-      this.$store.commit("changetaglight", i);
+      this.$store.commit("changetaglight", this.$store.state.tag.tag_[i].head);
+      this.$router.push(this.$store.state.tag.tag_[i].url);
     },
     fn3() {
       this.$store.commit("changetabnum", 0);
@@ -201,37 +196,58 @@ export default {
       this.$store.commit("changetaglight", -1);
     },
     del(i, e) {
-      console.log(e);
       e = e || event;
       e.stopPropagation();
       e.CancelBubble = true;
-        console.log(this.$store.state.tag.tag_[i].head,this.$store.state.tag.tag_.length-1);
+      let light_i = document.getElementsByClassName("light")[0];
+      // console.log(this.$store.state.tag.tag_[i - 1].num);
       if (this.$store.state.tag.tag_.length == 1) {
-        console.log(1);
-      this.$store.commit("changetaglight", -1);
-          this.$store.commit("changetabtab", -1);
-      this.$store.commit("changetabnum", 0);
+        this.$store.commit("changetaglight", -1);
+        this.$store.commit("changetabtab", -1);
+        this.$store.commit("changetabnum", 0);
         setTimeout(() => {
           this.$router.push("/index/home");
         }, 30);
       } else {
         if (this.$store.state.tag.light == this.$store.state.tag.tag_[i].head) {
-      this.$store.commit("changetabnum", this.$store.state.tag.tag_[i+1].num);
-      this.$store.commit("changetabtab", this.$store.state.tag.tag_[i+1].tab);
-      this.$store.commit("changetaglight", this.$store.state.tag.tag_[i+1].head);
-        }else if(this.$store.state.tag.tag_[i].head==this.$store.state.tag.tag_.length-1){
-          this.$store.commit("changetabnum", this.$store.state.tag.tag_[i-1].num);
-      this.$store.commit("changetabtab", this.$store.state.tag.tag_[i-1].tab);
-      this.$store.commit("changetaglight", this.$store.state.tag.tag_[i-1].head);
+          console.log(this.$store.state.tag.light, this.$store.state.tag.tag_[i].head);
+          if (i = 0) {
+            this.$store.commit("changetaglight", -1);
+            this.$store.commit("changetabtab", -1);
+            this.$store.commit("changetabnum", 0);
+            setTimeout(() => {
+              this.$router.push("/index/home");
+            }, 30);
+          } else {
+            console.log(this.$store.state.tag.tag_[i - 1])
+            this.$store.commit(
+              "changetabnum",
+              this.$store.state.tag.tag_[i - 1].num
+            );
+            this.$store.commit(
+              "changetabtab",
+              this.$store.state.tag.tag_[i - 1].tab
+            );
+            this.$store.commit(
+              "changetaglight",
+              this.$store.state.tag.tag_[i - 1].head
+            );
+            this.$router.push(this.$store.state.tag.tag_[i - 1].url);
+          }
+        } else if (i > light_i) {
+          this.$store.commit(
+            "changetaglight",
+            this.$store.state.tag.tag_[i - 1].head
+          );
         }
       }
+
       this.$store.state.tag.tag_.splice(i, 1);
       this.$store.state.tag.name.splice(i, 1);
     }
   },
   components: {},
-  computed: {
-  }
+  computed: {}
 };
 </script>
 
@@ -239,19 +255,24 @@ export default {
 #index {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   .header {
     width: 100%;
     height: 100px;
-    // overflow: hidden;
     position: relative;
-    span {
+    .fan {
       float: right;
       margin-right: 24px;
-      font-size: 20px;
+      display: block;
+      height: 100%;
       line-height: 100px;
-      cursor: pointer;
-      color: #333;
-      text-decoration: none;
+      a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+        font-size: 20px;
+        cursor: pointer;
+      }
     }
     .tou {
       margin-top: 12px;
@@ -283,11 +304,20 @@ export default {
           height: 31px;
           border: 2px solid #fc0;
           border-radius: 5px;
+          color: #333;
+          position: relative;
           &:not(:first-child) {
             text-indent: 20px;
           }
           &:first-child {
             text-align: center;
+            a {
+              display: block;
+              width: 100%;
+              height: 100%;
+              text-decoration: none;
+              color: #333;
+            }
           }
           line-height: 31px;
           cursor: pointer;
@@ -298,29 +328,21 @@ export default {
               background: #fff;
             }
           }
-          a {
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            height: 100%;
+          span {
+            text-indent: 0;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            line-height: 13px;
+            border-radius: 50%;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
             color: #333;
-            position: relative;
-            span {
-              text-indent: 0;
-              text-align: center;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              right: -15px;
-              width: 15px;
-              height: 15px;
-              line-height: 13px;
-              border-radius: 50%;
-              display: inline-block;
-              background: rgba(255, 255, 255, 0.5);
-              font-size: 12px;
-              color: #333;
-            }
           }
         }
       }
@@ -397,4 +419,32 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .txt {
+    width: 85% !important;
+    overflow: hidden !important;
+    height: 100% !important;
+    margin-top: 20px !important;
+  }
+  .left ul li {
+    line-height: 60px !important;
+  }
+  .left ul li ul li {
+    height: 60px !important;
+  }
+  .head {
+    width: 1111px !important;
+    top: 95px !important;
+  }
+  .header {
+    height: 95px !important;
+  }
+  .head ul li {
+    width: 118px !important;
+  }
+  section {
+    height: calc(100% - 95px) !important;
+  }
+}
+
 </style>

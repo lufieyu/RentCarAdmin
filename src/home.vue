@@ -113,4 +113,30 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+ #home{
+   width: 100% !important;
+ }
+ .chaxun{
+   width: 1111px !important;
+   padding:20px !important;
+   margin-top:20px !important;
+   &:first-child{
+   margin-top:40px !important;
+   }
+ }
+ .chaxun1{
+    margin-top:40px !important;
+ }
+ .mingxi{
+    width: 1111px !important;
+    margin-top:20px !important;
+    height: 257px !important;
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+ }
+}
+
 </style>

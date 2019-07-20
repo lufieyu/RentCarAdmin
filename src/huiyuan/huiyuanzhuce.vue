@@ -106,4 +106,27 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .zhuce{
+    height:83% !important;
+  }
+  .zhuce ul{
+    padding-top:20px !important;
+  }
+  .zhuce ul li{
+    width: 45% !important;
+    margin-bottom:45px !important;
+    input{
+      width: 250px !important;
+    }
+  }
+  .zhuce button{
+    bottom:33px !important;
+    height: 45px !important;
+    left:37% !important;
+    width: 220px !important;
+    font-size: 20px !important;
+  }
+}
+
 </style>

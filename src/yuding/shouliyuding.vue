@@ -349,4 +349,44 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .shouli {
+    width: 96% !important;
+    height: 445px !important;
+  }
+  .s_top {
+    padding-top: 20px !important;
+    height: 100px !important;
+  }
+  #shouli .shouli .s_top li[data-v-21b615de]:nth-child(n + 4) {
+    margin-top: 20px !important;
+  }
+  .s_right {
+    margin-top: 20px !important;
+  }
+  .s_right ul li span {
+    font-size: 20px !important;
+  }
+  .s_right button {
+    margin: 35px auto !important;
+  }
+  #shouli .shouli .s_bottom .s_right ul li input[data-v-21b615de] {
+    height: 35px !important;
+  }
+  #shouli .shouli .s_bottom .s_right ul li span[data-v-21b615de] {
+    line-height: 35px !important;
+  }
+  .s_right img {
+    width: 325px !important;
+    height: 140px !important;
+  }
+  .s_left {
+    max-height: 285px !important;
+    margin-top: 20px !important;
+  }
+  #shouli .shouli .s_bottom .s_right ul li[data-v-21b615de]:first-child {
+    margin-right: 140px !important;
+  }
+}
+
 </style>

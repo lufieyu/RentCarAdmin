@@ -390,4 +390,64 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .top {
+    width: 97% !important;
+    height: 190px !important;
+  }
+  .t_left {
+    width: 49% !important;
+  }
+  .t_right {
+    width: 50% !important;
+  }
+  .t_left h3,
+  .t_right h3 {
+    margin-bottom: 5px !important;
+  }
+  .t_left p {
+    margin-bottom: 5px !important;
+  }
+  .t_right div {
+    margin-top: 35px !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    p {
+      text-indent: 0 !important;
+      span {
+        font-size: 20px !important;
+      }
+    }
+  }
+  .t_right button {
+    font-size: 22px !important;
+    width: 210px !important;
+    height: 50px !important;
+    margin: 30px 0 0 180px !important;
+  }
+  h3 {
+    font-size: 20px !important;
+  }
+  span {
+    font-size: 15px !important;
+  }
+  // 消费记录
+  .bottom {
+    margin-top: 20px !important;
+    width: 96% !important;
+    height: 245px !important;
+    h3 {
+      margin-bottom: 10px !important;
+    }
+  }
+  .table {
+    width: 97% !important;
+    max-height: 175px !important;
+    // overflow: hidden !important;
+  }
+  #chaxun .bottom .table table tr th[data-v-0cbdd727]:nth-child(7) {
+    width: 108px !important;
+  }
+}
+
 </style>

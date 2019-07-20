@@ -361,4 +361,31 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .jiesuan {
+    height: 445px !important;
+  }
+  #jiesuan .jiesuan .content[data-v-9fcc8924] {
+    margin-left: 235px !important;
+    padding-top: 170px !important;
+  }
+  .jiesuan_ {
+    width: 97% !important;
+    height: 446px !important;
+  }
+  .chaxun {
+    padding-top: 20px !important;
+  }
+  .table {
+    width: 96% !important;
+    max-height: 300px !important;
+  }
+  #jiesuan .jiesuan_ .table table tr th[data-v-9fcc8924]:nth-child(8) {
+    width: 125px !important;
+  }
+  #jiesuan .jiesuan_ .table table tr th[data-v-9fcc8924]:nth-child(2) {
+    width: 114px !important;
+  }
+}
+
 </style>

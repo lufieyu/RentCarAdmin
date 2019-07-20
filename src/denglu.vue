@@ -8,6 +8,7 @@
         </div>
         <div class="in_input">
           <input
+            name="admin"
             @keydown.enter="denglu_btn"
             class="text"
             v-model="text"
@@ -15,6 +16,7 @@
             placeholder="请输入账户名"
           />
           <input
+            name="password"
             @keydown.enter="denglu_btn"
             class="password"
             v-model="password"
@@ -28,24 +30,30 @@
           <span>忘记密码</span>
         </div>
         <div class="in_btn">
-          <button @click="denglu_btn($event)">登录</button>
+          <button @click.prevent="denglu_btn">登录</button>
         </div>
       </form>
     </div>
     <div class="denglu_ins" v-if="!tab">
       <div class="denglu_ins_in">
-        <form name="register" onSubmit='false'>
+        <form name="register">
           <div class="ins_title">
             <h3 @click="tab=true">用户登录</h3>
             <h3>立即注册</h3>
           </div>
           <div class="ins_input">
-            <input class="text" v-model="text1" type="text" placeholder="请输入账户名" />
-            <input class="password" v-model="password1" type="password" placeholder="请输入密码" />
-            <input class="password" type="password" placeholder="请确认密码" />
+            <input name="admin" class="text" v-model="text1" type="text" placeholder="请输入账户名" />
+            <input
+              name="password"
+              class="password"
+              v-model="password1"
+              type="password"
+              placeholder="请输入密码"
+            />
+            <input class="password" v-model="password2" type="password" placeholder="请确认密码" />
           </div>
           <div class="ins_btn">
-            <button @click="res($enent)">立即注册</button>
+            <button @click.prevent="res">立即注册</button>
           </div>
         </form>
       </div>
@@ -58,19 +66,18 @@ export default {
   data() {
     return {
       tab: true,
-      loak: true,
+      lock: true,
       text: "",
       password: "",
       text1: "",
-      password1: ""
+      password1: "",
+      password2: ""
     };
   },
   methods: {
-    denglu_btn(e) {
-      console.log(e);
-      e.preventDefault;
-      if (this.loak == true) {
-        this.loak = false;
+    denglu_btn() {
+      if (this.lock == true) {
+        this.lock = false;
         if (this.text == "") {
           this.fn("text", "账户名不能为空", "请输入账户名");
         } else if (this.text !== "admin") {
@@ -80,40 +87,64 @@ export default {
           this.fn("password", "密码不能为空", "请输入密码");
         } else {
           console.log("登录成功");
-          this.loak = true;
-          this.$axios.post('http://172.25.1.82:8080/admin/findAll')
-          .then((res)=>{
-            console.log(res);
-          })
-          .then((err)=>{
-            console.log(err);
-          })
-          this.$router.push('/index/home');
+          this.lock = true;
+          this.$axios
+            .post(
+              "http://172.25.1.82:8080/admin/findAll?admin=" +
+                this.text +
+                "&password=" +
+                this.password
+            )
+            .then(res => {
+              console.log(res);
+            })
+            .then(err => {
+              console.log(err);
+            });
+          this.$router.push("/index/home");
         }
       }
     },
     fn(a, b, c) {
       let aa = document.getElementsByClassName(a)[0];
       aa.setAttribute("placeholder", b);
-      aa.setAttribute("class", "text input_light");
-      setTimeout(function() {
+      aa.setAttribute("class", a + " input_light");
+      setTimeout(() => {
         aa.setAttribute("placeholder", c);
-        aa.setAttribute("class", "text");
+        aa.setAttribute("class", a);
+        this.lock = true;
       }, 1000);
-      this.loak = true;
       return;
     },
-    res(e) {
-      console.log(e);
-      e.PreventDefault;
-          this.$axios.post('http://172.25.1.82:8080/admin/save', {
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    res() {
+      if (this.lock == true) {
+        this.lock = false;
+        if (this.text1 == "") {
+          this.fn("text1", "账户名不能为空", "请输入账户名");
+        } else if (this.text1 == "") {
+          this.fn(
+            "text1",
+            "请输入6-12位字母和数字组成的账户名",
+            "请输入账户名"
+          );
+        } else {
+          console.log("注册成功");
+          this.lock = true;
+          this.$axios
+            .get(
+              "http://172.25.1.82:8080/admin/save?admin=" +
+                this.text1 +
+                "&password=" +
+                this.password1
+            )
+            .then(function(res) {
+              console.log(res);
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+        }
+      }
     }
   },
   components: {}
@@ -301,6 +332,37 @@ export default {
         }
       }
     }
+  }
+}
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  #denglu {
+    width: 30%;
+    height: 60%;
+    overflow: hidden;
+  }
+  .in_title,
+  .ins_title {
+    height: 60px !important;
+    line-height: 60px !important;
+  }
+  h3 {
+    font-size: 25px !important;
+    height: 60px !important;
+    line-height: 60px !important;
+  }
+  .in_input,
+  .ins_input {
+    padding-top: 20px !important;
+  }
+  .text,
+  .password {
+    margin-bottom: 30px !important;
+  }
+  .in_btn button {
+    font-size: 20px !important;
+  }
+  .ins_btn button {
+    font-size: 20px !important;
   }
 }
 </style>

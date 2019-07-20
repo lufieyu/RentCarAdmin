@@ -379,4 +379,24 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .box {
+    width: 97% !important;
+    height: 446px !important;
+  }
+  .table {
+    width: 96% !important;
+    max-height: 300px !important;
+  }
+  #guanli .box .table table tr td:last-child div[data-v-c2d07204] {
+    margin-left: 5px !important;
+  }
+  #guanli .box .table table tr th[data-v-c2d07204]:nth-child(8) {
+    width: 125px !important;
+  }
+  #guanli .box .table table tr th[data-v-c2d07204]:nth-child(3) {
+    width: 114px !important;
+  }
+}
+
 </style>

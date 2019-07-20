@@ -143,4 +143,27 @@ export default {
     }
   }
 }
+@media all and (min-width: 681px) and (max-width: 1366px) {
+  .jiesuan {
+    width: 96% !important;
+    height: 445px !important;
+  }
+  .jiesuan button {
+    bottom: 35px !important;
+  }
+  .j_top {
+    height: 140px !important;
+    li {
+      height: 70px !important;
+      line-height: 70px !important;
+    }
+  }
+  .j_bottom {
+    margin-top: 40px !important;
+  }
+  .j_bottom li {
+    margin-bottom: 45px !important;
+  }
+}
+
 </style>
