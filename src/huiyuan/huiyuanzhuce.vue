@@ -31,7 +31,11 @@
           <input type="text">
         </li>
       </ul>
-      <button>提交</button>
+      <el-button
+    plain
+    @click="open">
+    成功
+  </el-button>
     </div>
   </div>
 </template>
@@ -44,6 +48,13 @@ export default {
     }
   },
   methods: {
+open() {
+        this.$notify({
+          title: '成功',
+          message: '这是一条成功的提示消息',
+          type: 'success'
+        });
+      },
 
   },
   components: {

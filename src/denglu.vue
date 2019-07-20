@@ -42,18 +42,18 @@
             <h3>立即注册</h3>
           </div>
           <div class="ins_input">
-            <input name="admin" class="text" v-model="text1" type="text" placeholder="请输入账户名" />
+            <input name="admin" class="text1" v-model="text1" type="text" placeholder="请输入账户名" />
             <input
               name="password"
-              class="password"
+              class="password1"
               v-model="password1"
               type="password"
               placeholder="请输入密码"
             />
-            <input class="password" v-model="password2" type="password" placeholder="请确认密码" />
+            <input class="password2" v-model="password2" type="password" placeholder="请确认密码" />
           </div>
           <div class="ins_btn">
-            <button @click.prevent="res">立即注册</button>
+            <el-button plain @click.prevent="res">立即注册</el-button>
           </div>
         </form>
       </div>
@@ -71,7 +71,7 @@ export default {
       password: "",
       text1: "",
       password1: "",
-      password2: ""
+      password2: "",
     };
   },
   methods: {
@@ -118,34 +118,49 @@ export default {
     },
     res() {
       if (this.lock == true) {
+        let reg = /^[a-z0-9]{6,12}$/i;
+        console.log(!reg.test(this.text1));
         this.lock = false;
         if (this.text1 == "") {
           this.fn("text1", "账户名不能为空", "请输入账户名");
-        } else if (this.text1 == "") {
+        } else if (!reg.test(this.text1)) {
+          this.text1='';
           this.fn(
             "text1",
             "请输入6-12位字母和数字组成的账户名",
             "请输入账户名"
           );
+        } else if (this.password1 == "") {
+          this.fn("password1", "密码不能为空", "请输入密码");
+        } else if (!reg.test(this.password1)) {
+          this.password1='';
+          this.fn("password1", "请输入6-12位字母和数字组成的密码", "请输入密码");
+        } else if (this.password2 !== this.password1) {
+          this.password2='';
+          this.fn("password2", "两次密码不匹配", "请确认密码");
         } else {
-          console.log("注册成功");
-          this.lock = true;
           this.$axios
             .get(
-              "http://172.25.1.82:8080/admin/save?admin=" +
+              "http://172.25.1.42:8080/admin/save?admin=" +
                 this.text1 +
                 "&password=" +
                 this.password1
             )
             .then(function(res) {
-              console.log(res);
+              this.$notify({
+          title: '成功',
+          message: '注册成功',
+          type: 'success'
+        });
             })
             .catch(function(err) {
-              console.log(err);
+              
             });
+          this.lock = true;
         }
       }
-    }
+    },
+     
   },
   components: {}
 };
@@ -355,7 +370,10 @@ export default {
     padding-top: 20px !important;
   }
   .text,
-  .password {
+  .password,
+  .text1,
+  .password1,
+  .password2 {
     margin-bottom: 30px !important;
   }
   .in_btn button {

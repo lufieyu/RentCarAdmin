@@ -116,15 +116,12 @@ export default {
     };
   },
   mounted() {
-    // this.$store.state.$router.go(0);
-    console.log();
   },
   methods: {
     fn(ind) {
       this.$store.commit("changetabnum", ind);
       this.$store.commit("changetabtab", -1);
       this.$store.commit("changetagnum", ind);
-      this.$store.commit("changetagtab", -1);
       if (this.$store.state.Tab.num == 4) {
         if (
           this.$store.state.tag.name.indexOf(
@@ -154,7 +151,6 @@ export default {
     },
     fn_(ind) {
       this.$store.commit("changetabtab", ind);
-      this.$store.commit("changetagtab", ind);
       if (
         this.$store.state.tag.name.indexOf(
           this.$store.state.Tab.Tab_[this.$store.state.Tab.num - 1].tits[ind]
