@@ -2,13 +2,13 @@
   <div id="jiesuan">
     <div class="jiesuan" v-if="chaxun">
       <div class="content">
-        <input type="text" />
-        <button @click='chaxun=false'>查询</button>
+        <input type="text" v-model="cha">
+        <button @click='fn'>查询</button>
       </div>
     </div>
     <div class="jiesuan_" v-if="!chaxun">
       <div class="chaxun">
-        <input type="text" name='number' v-model='cha'/>
+        <input type="text" name='number' v-model="cha">
         <button @click='fn'>查询</button>
       </div>
       <div class="table">
@@ -39,14 +39,14 @@
           <tr v-for="(item,index) in jiesuan" :key="index">
             <td>
               <input type="checkbox" />
-              <span v-text="item.zuping"></span>
+              <span v-text="item.leaseWay"></span>
             </td>
-            <td v-text="item.name"></td>
+            <td v-text="item.userName"></td>
             <td v-text="item.phone"></td>
-            <td v-text="item.chexing"></td>
-            <td v-text="item.zj"></td>
-            <td v-text="item.zjh"></td>
-            <td v-text="item.time"></td>
+            <td v-text="item.carType"></td>
+            <td v-text="item.cardType"></td>
+            <td v-text="item.cardId"></td>
+            <td v-text="item.quDate"></td>
             <td>
               <div>
                 <img src="./../../static/img/shouli.png" />
@@ -196,8 +196,11 @@ export default {
       this.$router.push('/index/shouliyuding');
     },
     fn(){
+      console.log(this.$store.state.IP)
+      this.chaxun=false;
       this.$axios.get(this.$store.state.IP+'/leaserecord/getAll?number='+this.cha).then((res)=>{
         console.log(res);
+        this.jiesuan=res.data.leaserecordList;
       })
     }
   },
