@@ -13,7 +13,7 @@
       </router-link>
     </div>
     <div class="chaxun">
-      <input type="text" placeholder="请输入车牌号" v-model="$store.state.chepai.chepaihao" />
+      <input type="text" placeholder="请输入车牌号" v-model="$store.state.cheliang.chepaihao" />
       <router-link to="/index/cheliangchaxun">
         <button @click="fn2()">查询</button>
       </router-link>
@@ -100,13 +100,13 @@ export default {
         .get(
           this.$store.state.IP +
             "/cartrade/findCarPlate?carPlate=" +
-            this.$store.state.chepai.chepaihao
+            this.$store.state.cheliang.chepaihao
         )
         .then(res => {
           console.log(res);
           this.$store.commit(
-            "changechpaixinxi",
-            this.$store.state.chepai.xinxi
+            "changechepaixinxi",
+            this.$store.state.cheliang.xinxi
           );
         });
     },

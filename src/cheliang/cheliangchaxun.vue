@@ -9,7 +9,7 @@
       <div class="c_right">
         <div class="c_cha">
           <span>车牌号</span>
-          <input type="text" name="carPlate" v-model="$store.state.chepai.chepaihao" />
+          <input type="text" name="carPlate" v-model="$store.state.cheliang.chepaihao" />
           <button @click="fn">查询</button>
         </div>
         <div class="c_xinxi">
@@ -87,23 +87,14 @@ export default {
       this.$axios
         .get(
           this.$store.state.IP+"/cartrade/findCarPlate?carPlate=" +
-            this.$store.state.chepai.chepaihao
+            this.$store.state.cheliang.chepaihao
         )
         .then((res) => {
           console.log(res);
-          this.$axios
-        .get(
-          this.$store.state.IP +
-            "/cartrade/findCarPlate?carPlate=" +
-            this.$store.state.chepai.chepaihao
-        )
-        .then(res => {
-          console.log(res);
           this.$store.commit(
             "changechpaixinxi",
-            this.$store.state.chepai.xinxi
+            this.$store.state.cheliang.xinxi
           );
-        });
         });
     }
   },

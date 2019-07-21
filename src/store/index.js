@@ -51,7 +51,7 @@ export default new Vuex.Store({
   },
   mutations: {
     changechepaixinxi(state, val) {
-      state.chepai.xinxi = val;
+      state.cheliang.xinxi = val;
     },
     changexinxi(state, val) {
       state.xinxi = val;

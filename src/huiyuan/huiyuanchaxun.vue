@@ -5,7 +5,7 @@
         <h3>会员信息</h3>
         <p>
           <span>姓名</span>
-          <span>张顺顺</span>
+          <span v-text="$store.state.xinxi"></span>
         </p>
         <p>
           <span>账户</span>
