@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    IP:'http://172.25.5.215:8080',
+    IP:'http://172.25.1.8:8080',
     Tab: {
       num: 0,
       tab: -1,

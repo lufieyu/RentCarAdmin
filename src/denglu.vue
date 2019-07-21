@@ -30,7 +30,7 @@
           <span>忘记密码</span>
         </div>
         <div class="in_btn">
-          <button @click.prevent="denglu_btn">登录</button>
+          <el-button @click.prevent="denglu_btn">登录</el-button>
         </div>
       </form>
     </div>
@@ -84,7 +84,6 @@ export default {
           this.fn("password", "密码不能为空", "请输入密码");
         } else {
           console.log("登录成功");
-          this.lock = true;
           this.$axios
             .get(
               this.$store.state.IP+"/admin/findAll?admin=" +
@@ -94,12 +93,20 @@ export default {
             )
             .then(res => {
               console.log(res);
+              if(res.data==200){
               this.$router.push("/index/home");
+          this.lock = true;
+              }else{
+                this.password='';
+              this.fn("password", "账户名或密码错误", "请输入密码");
+          this.lock = true;
+              }
             })
             .then(err => {
               console.log(err);
               this.password='';
               this.fn("password", "账户名或密码错误", "请输入密码");
+          this.lock = true;
             });
         }
       }
