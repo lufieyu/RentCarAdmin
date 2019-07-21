@@ -2,14 +2,14 @@
   <div id="jiesuan">
     <div class="jiesuan" v-if="chaxun">
       <div class="content">
-        <input type="text" v-model="cha">
-        <button @click='fn'>查询</button>
+        <input type="text" v-model="cha" />
+        <button @click="fn">查询</button>
       </div>
     </div>
     <div class="jiesuan_" v-if="!chaxun">
       <div class="chaxun">
-        <input type="text" name='number' v-model="cha">
-        <button @click='fn'>查询</button>
+        <input type="text" name="number" v-model="cha" />
+        <button @click="fn">查询</button>
       </div>
       <div class="table">
         <table cellspacing="0" cellpadding="0">
@@ -50,7 +50,7 @@
             <td>
               <div>
                 <img src="./../../static/img/shouli.png" />
-                <span style="color:#0a82e1" @click='shouli(3,1)'>受理</span>
+                <span style="color:#0a82e1" @click="shouli(3,1)">受理</span>
               </div>
             </td>
           </tr>
@@ -61,112 +61,13 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
-      chaxun:true,
-      cha:'',
-      jiesuan: [
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        }
-      ]
+      chaxun: true,
+      cha: "",
+      jiesuan: []
     };
   },
   methods: {
@@ -193,15 +94,17 @@ export default {
         "changetaglight",
         this.$store.state.Tab.Tab_[num - 1].tits[tab].head
       );
-      this.$router.push('/index/shouliyuding');
+      this.$router.push("/index/shouliyuding");
     },
-    fn(){
-      console.log(this.$store.state.IP)
-      this.chaxun=false;
-      this.$axios.get(this.$store.state.IP+'/leaserecord/getAll?number='+this.cha).then((res)=>{
-        console.log(res);
-        this.jiesuan=res.data.leaserecordList;
-      })
+    fn() {
+      console.log(this.$store.state.IP);
+      this.chaxun = false;
+      this.$axios
+        .get(this.$store.state.IP + "/leaserecord/getAll?number=" + this.cha)
+        .then(res => {
+          console.log(res);
+          this.jiesuan = res.data.leaserecordList;
+        });
     }
   },
   components: {}
@@ -388,7 +291,7 @@ export default {
             }
             &:last-child {
               overflow: hidden;
-        cursor: pointer;
+              cursor: pointer;
             }
           }
         }
@@ -422,5 +325,4 @@ export default {
     width: 114px !important;
   }
 }
-
 </style>

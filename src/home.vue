@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div class="chaxun">
-      <input name="phone" v-model='chaxun1' type="text" placeholder="请输入手机号" />
+      <input name="phone" v-model="chaxun1" type="text" placeholder="请输入手机号" />
       <router-link to="/index/huiyuanchaxun">
         <button @click="fn(1,1,'cha')">查询</button>
       </router-link>
@@ -13,7 +13,7 @@
       </router-link>
     </div>
     <div class="chaxun">
-      <input type="text" placeholder="请输入车牌号" />
+      <input type="text" placeholder="请输入车牌号" v-model="$store.state.chepai.chepaihao" />
       <router-link to="/index/cheliangchaxun">
         <button @click="fn2()">查询</button>
       </router-link>
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       chaxun1: "",
-      chaxun2: "",
+      chaxun2: ""
     };
   },
   mounted() {
@@ -45,10 +45,13 @@ export default {
       if (a == "cha") {
         this.$axios
           .get(
-            this.$store.state.IP+"/ordermessage/findByPhone?phone="+this.chaxun1
+            this.$store.state.IP +
+              "/ordermessage/findByPhone?phone=" +
+              this.chaxun1
           )
           .then(res => {
             console.log(res);
+            this.$store.commit("changexinxi", res);
           });
       }
       this.$store.commit("changetabnum", num);
@@ -93,6 +96,19 @@ export default {
         this.$store.state.tag.name.push(this.$store.state.Tab.Tab_t[1].tit);
       }
       this.$store.commit("changetaglight", this.$store.state.Tab.Tab_t[1].head);
+      this.$axios
+        .get(
+          this.$store.state.IP +
+            "/cartrade/findCarPlate?carPlate=" +
+            this.$store.state.chepai.chepaihao
+        )
+        .then(res => {
+          console.log(res);
+          this.$store.commit(
+            "changechpaixinxi",
+            this.$store.state.chepai.xinxi
+          );
+        });
     },
     mychart() {
       var myChart = echarts.init(document.getElementById("main"));

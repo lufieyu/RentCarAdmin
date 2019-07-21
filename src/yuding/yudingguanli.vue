@@ -35,12 +35,12 @@
               <input type="checkbox" />
               <span v-text="item.name"></span>
             </td>
-            <td v-text="item.phone"></td>
+            <td v-text="$options.filters.hidephone(item.phone)"></td>
             <td v-text="item.zuping"></td>
             <td v-text="item.chexing"></td>
             <td v-text="item.zj"></td>
-            <td v-text="item.zjh"></td>
-            <td v-text="item.time"></td>
+            <td v-text="$options.filters.hideshenfen(item.zjh)"></td>
+            <td v-text="$options.filters.date(item.time)"></td>
             <td>
               <div>
                 <img src='./../../static/img/shouli.png' />
@@ -66,139 +66,14 @@ export default {
       guanli: [
         {
           name: "sdfg",
-          phone: 17621322007,
+          phone: '17621322007',
           zuping: "国内租",
           chexing: "经济型",
           zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
+          zjh: '411300167803194414',
+          time: new Date()
         },
-        {
-          name: "str",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "gjgh长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱khg长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱gjh长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
-        {
-          name: "邱士长",
-          phone: 17621322007,
-          zuping: "国内租",
-          chexing: "经济型",
-          zj: "身份证",
-          zjh: 411300167803194414,
-          time: "2019-05-01"
-        },
+        
       ]
     };
   },

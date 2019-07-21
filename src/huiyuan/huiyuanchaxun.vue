@@ -63,7 +63,7 @@
             <td></td>
           </tr>
           <tr v-for="(item,index) in xiaofei" :key="index">
-            <td v-text="item.time"></td>
+            <td v-text="$options.filters.date(item.time)"></td>
             <td v-text="item.chexing"></td>
             <td v-text="item.zuping"></td>
             <td v-text="item.zt"></td>
@@ -86,105 +86,6 @@ export default {
       phone: "",
       email: "",
       xiaofei: [
-        {
-          time: "2019-01-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
-        {
-          time: "2019-05-01",
-          chexing: "豫A 12365",
-          zuping: "国内租",
-          zt: "预订",
-          zhifu: 500,
-          chongzhi: 1000,
-          jifen: 1000
-        },
         
       ]
     };

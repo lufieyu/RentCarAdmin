@@ -93,7 +93,7 @@ export default {
             )
             .then(res => {
               console.log(res);
-              if(res.data==200){
+              if(res.data.code==400){
               this.$router.push("/index/home");
           this.lock = true;
               }else{
@@ -102,7 +102,7 @@ export default {
           this.lock = true;
               }
             })
-            .then(err => {
+            .catch(err => {
               console.log(err);
               this.password='';
               this.fn("password", "账户名或密码错误", "请输入密码");

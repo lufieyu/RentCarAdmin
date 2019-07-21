@@ -11,6 +11,20 @@ import store from './store/index'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+Vue.filter('date', function(val) {
+  let year = val.getFullYear();
+  let month = val.getMonth() + 1;
+  let date = val.getDate();
+  return year + "-" + month + "-" + date;
+});
+Vue.filter('hidephone', function(val) {
+  if(val!=''||val!=undefind){
+    return val.substring(0, 3) + "****" + val.substring(val.length - 4);
+  }
+});
+Vue.filter('hideshenfen', function(val) {
+  return val.substring(0, 4) + "**********" + val.substring(val.length - 4);
+});
 new Vue({
   el: '#app',
   router,
