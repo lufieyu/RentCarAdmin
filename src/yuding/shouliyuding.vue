@@ -4,19 +4,19 @@
       <ul class="s_top">
         <li>
           <span>姓名</span>
-          <span>张顺顺</span>
+          <span>喵喵</span>
         </li>
         <li>
           <span>联系电话</span>
-          <span>12345643245</span>
+          <span>13633702201</span>
         </li>
         <li>
           <span>取车时间</span>
-          <span>2019-07-25</span>
+          <span>2019-06-20</span>
         </li>
         <li>
           <span>证件号码</span>
-          <span>411323454829374112</span>
+          <span>411423454829371215</span>
         </li>
         <li>
           <span>定金</span>
@@ -31,89 +31,89 @@
         <div class="s_left">
           <ul>
             <li>
-              <span>2019-05-20</span>
+              <span>2019-08-20</span>
               <span>宝马3系</span>
               <span>1天</span>
             </li>
             <li>
-              <span>2019-05-20</span>
+              <span>2019-09-22</span>
               <span>宝马3系</span>
-              <span>1天</span>
+              <span>11天</span>
+            </li>
+            <li>
+              <span>2019-10-20</span>
+              <span>宝马3系</span>
+              <span>16天</span>
+            </li>
+            <li>
+              <span>2019-12-20</span>
+              <span>宝马3系</span>
+              <span>12天</span>
+            </li>
+            <li>
+              <span>2020-05-15</span>
+              <span>宝马3系</span>
+              <span>11天</span>
+            </li>
+            <li>
+              <span>2019-08-27</span>
+              <span>宝马3系</span>
+              <span>15天</span>
+            </li>
+            <li>
+              <span>2019-08-20</span>
+              <span>宝马3系</span>
+              <span>14天</span>
+            </li>
+            <li>
+              <span>2019-09-20</span>
+              <span>宝马3系</span>
+              <span>18天</span>
+            </li>
+            <li>
+              <span>2019-08-20</span>
+              <span>宝马3系</span>
+              <span>31天</span>
+            </li>
+            <li>
+              <span>2019-09-20</span>
+              <span>宝马3系</span>
+              <span>11天</span>
+            </li>
+            <li>
+              <span>2019-09-20</span>
+              <span>宝马3系</span>
+              <span>31天</span>
+            </li>
+            <li>
+              <span>2019-08-20</span>
+              <span>宝马3系</span>
+              <span>12天</span>
+            </li>
+            <li>
+              <span>2019-08-20</span>
+              <span>宝马3系</span>
+              <span>41天</span>
+            </li>
+            <li>
+              <span>2019-09-20</span>
+              <span>宝马3系</span>
+              <span>21天</span>
+            </li>
+            <li>
+              <span>2019-08-20</span>
+              <span>宝马3系</span>
+              <span>14天</span>
+            </li>
+            <li>
+              <span>2019-10-20</span>
+              <span>宝马3系</span>
+              <span>13天</span>
             </li>
             <li>
               <span>2019-05-20</span>
               <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
-            </li>
-            <li>
-              <span>2019-05-20</span>
-              <span>宝马3系</span>
-              <span>1天</span>
+              <span>12天</span>
             </li>
             <li>
               <span>2019-05-20</span>
@@ -215,11 +215,16 @@
 export default {
   data() {
     return {
-
+      list:[],
     }
   },
-  methods: {
+  mounted(){
+    this.$axios.get(this.$store.state.IP+'/leaserecord/getAll').then((res)=>{
+      console.log(res);
+    })
 
+  },
+  methods: {
   },
   components: {
 

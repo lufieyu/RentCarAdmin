@@ -53,7 +53,7 @@
           <span>1520</span>
         </li>
       </ul>
-      <button>结算</button>
+      <el-button  plain @click='btn(3,0)'>结算</el-button>
     </div>
   </div>
 </template>
@@ -63,7 +63,38 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    btn(num,tab){
+      this.$notify({
+                title: "结算",
+                message: "结算成功",
+                type: "success"
+              });
+              this.$store.commit("changetabnum", num);
+      this.$store.commit("changetabtab", tab);
+      if (
+        this.$store.state.tag.name.indexOf(
+          this.$store.state.Tab.Tab_[num - 1].tits[tab].tit
+        ) == -1
+      ) {
+        this.$store.state.tag.tag_.push({
+          name: this.$store.state.Tab.Tab_[num - 1].tits[tab].tit,
+          url: this.$store.state.Tab.Tab_[num - 1].tits[tab].href,
+          num: this.$store.state.Tab.num,
+          tab: this.$store.state.Tab.tab,
+          head: this.$store.state.Tab.Tab_[num - 1].tits[tab].head
+        });
+        this.$store.state.tag.name.push(
+          this.$store.state.Tab.Tab_[num - 1].tits[tab].tit
+        );
+      }
+      this.$store.commit(
+        "changetaglight",
+        this.$store.state.Tab.Tab_[num - 1].tits[tab].head
+      );
+              this.$router.push("/index/jiesuanguanli");
+    }
+  },
   components: {}
 };
 </script>

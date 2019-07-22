@@ -2,7 +2,7 @@
   <div id="guanli">
     <div class="box">
       <div class="chaxun">
-        <input type="text" v-model='chaxun' name='number'/>
+        <input type="text" v-model='chaxun' name='number' placeholder="请输入手机号" @keyup.enter='fn'/>
         <button @click='fn'>查询</button>
       </div>
       <div class="table">
@@ -30,17 +30,17 @@
             <td></td>
             <td></td>
           </tr>
-          <tr v-for="(item,index) in guanli" :key="index">
+          <tr v-for="(item,index) in $store.state.shouli" :key="index">
             <td>
               <input type="checkbox" />
-              <span v-text="item.name"></span>
+              <span v-text="item.userName"></span>
             </td>
-            <td v-text="$options.filters.hidephone(item.phone)"></td>
-            <td v-text="item.zuping"></td>
-            <td v-text="item.chexing"></td>
-            <td v-text="item.zj"></td>
-            <td v-text="$options.filters.hideshenfen(item.zjh)"></td>
-            <td v-text="$options.filters.date(item.time)"></td>
+            <td v-text="$options.filters.hidephone(item.phone.toString())"></td>
+            <td v-text="item.leaseWay"></td>
+            <td v-text="item.carType"></td>
+            <td v-text="item.cardType"></td>
+            <td v-text="$options.filters.hideshenfen(item.cardId)"></td>
+            <td v-text="$options.filters.date(item.quDate)"></td>
             <td>
               <div>
                 <img src='./../../static/img/shouli.png' />
@@ -80,7 +80,6 @@ export default {
   methods: {
     deldata(ind){
       console.log(ind)
-        // let len=this.guanli.length-ind+2;
         this.guanli.splice(ind,1);
         
     },
@@ -111,7 +110,8 @@ export default {
     },
     fn(){
       this.$axios.get(this.$store.state.IP+'/leaserecord/getAll?number='+this.chaxun).then((res)=>{
-        console.log(res);
+        console.log(res.data.leaserecordList);
+        this.$store.commit('changeshouli',res.data.leaserecordList);
       })
     }
   },

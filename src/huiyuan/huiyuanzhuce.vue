@@ -4,51 +4,44 @@
       <ul>
         <li>
           <span>姓名:</span>
-          <input type="text" v-model="name" />
+          <input class='name' type="text" v-model="name" />
         </li>
         <li>
           <span>手机号:</span>
-          <input id="phone_" type="text" v-model="phone" />
+          <input class='phone' type="text" v-model="phone" />
         </li>
         <li>
           <span>城市:</span>
-          <input type="text" v-model="citay" />
-        </li>
-        <li>
-          <span>验证码:</span>
-          <input type="text" v-model="yanzheng" />
+          <input class='citay' type="text" v-model="citay" />
         </li>
         <li>
           <span>身份证号:</span>
-          <input type="text" v-model="shenfen" />
+          <input class='shenfen' type="text" v-model="shenfen" />
         </li>
         <li>
           <span>驾驶证有效期:</span>
-          <input type="text" v-model="jiazhao" />
+          <input class='jiazhao' type="text" v-model="jiazhao" />
         </li>
         <li>
           <span>邮箱:</span>
-          <input id="emial_" type="text" v-model="emial" />
+          <input class='email' type="text" v-model="email" />
         </li>
       </ul>
-      <el-button plain @click="open" >成功</el-button>
+      <el-button plain @click="open">注册</el-button>
     </div>
   </div>
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
       name: "",
       phone: "",
       citay: "",
-      yanzheng: "",
       shenfen: "",
       jiazhao: "",
-      emial: ""
+      email: ""
     };
   },
   methods: {
@@ -64,42 +57,30 @@ export default {
       return;
     },
     open() {
-var phone=document.getElementById('phone_');
-var emial=document.getElementById('emial_');
-var phone_reg = /^1[3-9]\d{9}$/;
-var mail_reg = /^[\w\.]+@[0-9a-z]+\.[a-z]{2,3}$/;
-    var phone_ = phone.value;
-    if(phone_reg.test(phone_)){
-      if(!emial_reg.test(emial_)){
-        console.log('手机号错误')
-        this.$notify.error({
-          title: '错误',
-          message: '这是一条错误的提示消息'
+      var phone_reg = /^1[3-9]\d{9}$/;
+      var email_reg = /^[\w\.]+@[0-9a-z]+\.[a-z]{2,3}$/;
+      if (this.name=='') {
+        this.fn("name", "姓名不能为空", "");
+      }else if(this.phone==''){
+        this.fn("phone", "手机号不能为空", "");
+      }else if(!phone_reg.test(this.phone)){
+        this.fn("phone", "手机号不合法", "");
+      }else if(this.citay==''){
+        this.fn("citay", "城市不能为空", "");
+      }else if(this.shenfen==''){
+        this.fn("shenfen", "身份证号不能为空", "");
+      }else if(this.jiazhao==''){
+        this.fn("jiazhao", "驾照有效期不能为空", "");
+      }else if(this.email==''){
+        this.fn("email", "邮箱不能为空", "");
+      }else{
+        this.$notify({
+          title: "成功",
+          message: "注册成功",
+          type: "success"
         });
-        }
-        else{
-        console.log('email错误')        
-        }
-        console.log('手机号正确')
-         this.$notify({
-        title: "成功",
-        message: "这是一条成功的提示消息",
-        type: "success"
-      });
-//         if(emial_reg.test(emial_)){
-// console.log('email正确')
-//         }
-//         else{
-//         console.log('email错误')        
-//         }
-    }else{
-
-    }
-      // this.$notify({
-      //   title: "成功",
-      //   message: "这是一条成功的提示消息",
-      //   type: "success"
-      // });
+        this.$router.push('/index/home');
+      }
     }
   },
   components: {}

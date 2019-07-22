@@ -3,14 +3,15 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    IP:'http://172.25.5.214:8080',
+    IP:'http://172.25.1.216:8080',
     xinxi:{},
+    jilu:{},
     cheliang:{
       chepaihao:'',
       xinxi:{},
        },
     jiesuan:{},
-    shouli:{},
+    shouli:[],
 
     Tab: {
       num: 0,
@@ -50,8 +51,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    changeshouli(state,val){
+      state.shouli=val;
+    },
     changechepaixinxi(state, val) {
       state.cheliang.xinxi = val;
+    },
+    changejilu(state, val) {
+      state.jilu = val;
     },
     changexinxi(state, val) {
       state.xinxi = val;

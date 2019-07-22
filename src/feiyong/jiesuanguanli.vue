@@ -94,7 +94,7 @@ export default {
         "changetaglight",
         this.$store.state.Tab.Tab_[num - 1].tits[tab].head
       );
-      this.$router.push("/index/shouliyuding");
+      this.$router.push("/index/jiesuan");
     },
     fn() {
       console.log(this.$store.state.IP);

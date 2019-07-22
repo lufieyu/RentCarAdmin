@@ -17,19 +17,19 @@
           <ul>
             <li>
               <span>车辆品牌/名称</span>
-              <span>雪佛兰BH7141MY</span>
+              <span v-text="carBrand"></span>
             </li>
             <li>
               <span>车辆识别代码</span>
-              <span>SGFHJNBDGDFGHKNNBB</span>
+              <span v-text="carCode"></span>
             </li>
             <li>
               <span>车牌号</span>
-              <span>豫A 88888</span>
+              <span v-text="carPlate"></span>
             </li>
             <li>
               <span>发动机号码</span>
-              <span>LE5</span>
+              <span v-text="carNo"></span>
             </li>
             <li>
               <span>核载人数</span>
@@ -37,7 +37,7 @@
             </li>
             <li>
               <span>外廊尺寸(mm)</span>
-              <span>4673*1868*1756</span>
+              <span v-text="lookMm"></span>
             </li>
           </ul>
           <img src="./../../static/img/yua88888.png" alt />
@@ -78,7 +78,12 @@ export default {
         "豫A 12345",
         "豫A 12345",
         "豫A 12345"
-      ]
+      ],
+      carBrand:"大众-辉腾",
+      carCode:"OO1234567890OO",
+      carPlate:"豫A00000",
+      carNo:"OOO7",
+      lookMm:"5000*1836*1600",
     };
   },
   methods: {
@@ -90,15 +95,24 @@ export default {
             this.$store.state.cheliang.chepaihao
         )
         .then((res) => {
-          console.log(res);
+            let item = res.data.carPlates;
+            console.log(item);
+            this.carBrand = item[0].carBrand;
+            this.carCode = item[0].carCode;
+            this.carNo = item[0].carNo;
+            this.lookMm = item[0].lookMm;
+            this.carPlate = item[0].carPlate;
           this.$store.commit(
-            "changechpaixinxi",
+            "changechepaixinxi",
             this.$store.state.cheliang.xinxi
           );
         });
     }
   },
-  components: {}
+  components: {},
+  updated(){
+     
+  }
 };
 </script>
 

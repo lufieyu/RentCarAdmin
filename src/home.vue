@@ -53,6 +53,16 @@ export default {
             console.log(res);
             this.$store.commit("changexinxi", res);
           });
+          this.$axios
+          .get(
+            this.$store.state.IP +
+              "/leaserecord/getAll?phone=" +
+              this.chaxun1
+          )
+          .then(res => {
+            console.log(res);
+            this.$store.commit("changejilu", res);
+          });
       }
       this.$store.commit("changetabnum", num);
       this.$store.commit("changetabtab", tab);

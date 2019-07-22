@@ -5,23 +5,23 @@
         <h3>会员信息</h3>
         <p>
           <span>姓名</span>
-          <span v-text="$store.state.xinxi"></span>
+          <span v-text="$store.state.xinxi.data.name"></span>
         </p>
         <p>
           <span>账户</span>
-          <span>123456789</span>
+          <span v-text="$store.state.xinxi.data.phone"></span>
         </p>
         <p>
           <span>手机号</span>
-          <span>123456789</span>
+          <span v-text="$store.state.xinxi.data.phone"></span>
         </p>
         <p>
           <span>邮箱</span>
-          <span>2134567@qq.com</span>
+          <span v-text="$store.state.xinxi.data.email"></span>
         </p>
         <p>
           <span>证件号</span>
-          <span>123456789765432</span>
+          <span v-text="$store.state.xinxi.data.cardId"></span>
         </p>
         <span>编辑</span>
       </div>
@@ -30,11 +30,11 @@
         <div>
           <p>
             平驾币
-            <span>800</span>
+            <span v-text="$store.state.xinxi.data.money"></span>
           </p>
           <p>
             积分
-            <span>800</span>
+            <span v-text="$store.state.xinxi.data.integral"></span>
           </p>
         </div>
         <button>去充值</button>
@@ -63,13 +63,15 @@
             <td></td>
           </tr>
           <tr v-for="(item,index) in xiaofei" :key="index">
-            <td v-text="$options.filters.date(item.time)"></td>
-            <td v-text="item.chexing"></td>
-            <td v-text="item.zuping"></td>
-            <td v-text="item.zt"></td>
-            <td v-text="item.zhifu"></td>
-            <td v-text="item.chongzhi"></td>
-            <td v-text="item.jifen"></td>
+            <td v-text="$options.filters.date(item.quDate)"></td>
+            <td v-text="item.carType"></td>
+            <td v-text="item.leaseWay"></td>
+            <td v-if='item.handle==1'>预约</td>
+            <td v-else-if='item.handle==2'>使用中</td>
+            <td v-else>已结束</td>
+            <td v-text="item.payment"></td>
+            <td v-text="item.payment"></td>
+            <td v-text="item.payment"></td>
           </tr>
         </table>
       </div>
@@ -89,6 +91,12 @@ export default {
         
       ]
     };
+  },
+  mounted(){
+this.$axios.get(this.$store.state.IP +'/leaserecord/query').then((res)=>{
+  console.log(res.data.query);
+  this.xiaofei=res.data.query;
+})
   },
   methods: {},
   components: {}

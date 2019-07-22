@@ -71,7 +71,7 @@ export default {
       password: "",
       text1: "",
       password1: "",
-      password2: "",
+      password2: ""
     };
   },
   methods: {
@@ -86,27 +86,33 @@ export default {
           console.log("登录成功");
           this.$axios
             .get(
-              this.$store.state.IP+"/admin/findAll?admin=" +
+              this.$store.state.IP +
+                "/admin/findAll?admin=" +
                 this.text +
                 "&password=" +
                 this.password
             )
             .then(res => {
               console.log(res);
-              if(res.data.code==400){
-              this.$router.push("/index/home");
-          this.lock = true;
-              }else{
-                this.password='';
-              this.fn("password", "账户名或密码错误", "请输入密码");
-          this.lock = true;
+              if (res.data.code == 400) {
+                this.$notify({
+                title: "登录",
+                message: "登录成功",
+                type: "success"
+              });
+                this.$router.push("/index/home");
+                this.lock = true;
+              } else {
+                this.password = "";
+                this.fn("password", "账户名或密码错误", "请输入密码");
+                this.lock = true;
               }
             })
             .catch(err => {
               console.log(err);
-              this.password='';
+              this.password = "";
               this.fn("password", "账户名或密码错误", "请输入密码");
-          this.lock = true;
+              this.lock = true;
             });
         }
       }
@@ -124,47 +130,57 @@ export default {
     },
     res() {
       if (this.lock == true) {
-        let reg = /^[a-z0-9]{6,12}$/i;
+        let reg = /^[a-z0-9]{5,12}$/i;
         this.lock = false;
         if (this.text1 == "") {
           this.fn("text1", "账户名不能为空", "请输入账户名");
         } else if (!reg.test(this.text1)) {
-          this.text1='';
+          this.text1 = "";
           this.fn(
             "text1",
-            "请输入6-12位字母和数字组成的账户名",
+            "请输入5-12位字母和数字组成的账户名",
             "请输入账户名"
           );
         } else if (this.password1 == "") {
           this.fn("password1", "密码不能为空", "请输入密码");
         } else if (!reg.test(this.password1)) {
-          this.password1='';
-          this.fn("password1", "请输入6-12位字母和数字组成的密码", "请输入密码");
+          this.password1 = "";
+          this.fn(
+            "password1",
+            "请输入5-12位字母和数字组成的密码",
+            "请输入密码"
+          );
         } else if (this.password2 !== this.password1) {
-          this.password2='';
+          this.password2 = "";
           this.fn("password2", "两次密码不匹配", "请确认密码");
         } else {
           this.$axios
             .get(
-              this.$store.state.IP+"/admin/save?admin=" + this.text1 + "&password=" + this.password1
+              this.$store.state.IP +
+                "/admin/save?admin=" +
+                this.text1 +
+                "&password=" +
+                this.password1
             )
-            .then(function(res) {
+            .then((res) =>{
               console.log(res);
+              this.tab = true;
+              this.text1='';
+              this.password1='';
+              this.password2='';
               this.$notify({
-          title: '成功',
-          message: '注册成功',
-          type: 'success'
-        });
-        this.tab=true;
+                title: "注册",
+                message: "注册成功",
+                type: "success"
+              });
             })
-            .catch(function(err) {
-              
+            .catch((err)=> {
+
             });
           this.lock = true;
         }
       }
-    },
-     
+    }
   },
   components: {}
 };
